@@ -66,128 +66,114 @@ export function Hero({
   //   };
 
   return (
-    <div className="w-full relative">
-      {/* Radial Gradient Background from Bottom */}
-      <div
-        className="absolute inset-0 z-0 "
-        style={{
-          background:
-            "radial-gradient(125% 125% at 50% 90%, #fff 30%, #155DFC 100%)",
-        }}
-      />
-      {/* Content Container */}
-      <div className="w-full px-4 py-8 md:px-8 lg:px-16 relative">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-            {/* Left Column - Hero Content */}
-            <div className="flex flex-col justify-center space-y-6">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-3 self-start rounded-full bg-white px-4 py-2">
-                <SparkleIcon />
-                <span className="text-[11.9px] font-medium text-blue-700">
-                  {badge.text}
-                </span>
-              </div>
+ <div className="w-full relative overflow-hidden">
+  {/* Background */}
+  <div
+    className="absolute inset-0 z-0"
+    style={{
+      background:
+        "radial-gradient(120% 120% at 50% 90%, #ffffff 25%, #7C3AED 100%)",
+    }}
+  />
 
-              {/* Heading */}
-              <div className="space-y-2">
-                <h1 className="text-[51px] leading-[60px]">{heading.line1}</h1>
-                <h1 className="text-[51px] leading-[60px]">{heading.line2}</h1>
-              </div>
+  {/* Decorative blur */}
+  <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-purple-400/30 blur-3xl" />
+  <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-purple-600/30 blur-3xl" />
 
-              {/* Description */}
-              <div className="space-y-1 text-[17px] leading-7 text-gray-600">
-                {description.map((line, index) => (
-                  <p key={index}>{line}</p>
-                ))}
-              </div>
+  <div className="relative w-full px-4 py-12 md:px-8 lg:px-16">
+    <div className="mx-auto max-w-[1200px] grid grid-cols-1 gap-12 lg:grid-cols-2">
+      
+      {/* Left Content */}
+      <div className="flex flex-col justify-center space-y-6">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 self-start rounded-full bg-purple-100 px-4 py-2">
+          <SparkleIcon />
+          <span className="text-xs font-semibold text-purple-700">
+            {badge.text}
+          </span>
+        </div>
 
-              {/* Buttons */}
-              <div className="flex flex-col gap-4 sm:flex-row">
-                {buttons.primary && (
-                  <Button
-                    onClick={buttons.primary.onClick}
-                    className="h-[63.622px] gap-3 rounded-xl bg-blue-600 px-8 text-[15.3px] hover:bg-blue-700"
-                  >
-                    <Search className="size-5" />
-                    {buttons.primary.text}
-                  </Button>
-                )}
-                {buttons.secondary && (
-                  <Button
-                    onClick={buttons.secondary.onClick}
-                    variant="outline"
-                    className="h-[63.622px] gap-3 rounded-xl border-blue-600 px-8 text-[15.3px] text-blue-600 hover:bg-blue-50"
-                  >
-                    <Calendar className="size-5" />
-                    {buttons.secondary.text}
-                  </Button>
-                )}
-              </div>
+        {/* Heading */}
+        <div>
+          <h1 className="text-[52px] font-bold leading-tight bg-gradient-to-r from-purple-700 to-purple-400 bg-clip-text text-transparent">
+            {heading.line1}
+          </h1>
+          <h1 className="text-[52px] font-bold leading-tight bg-gradient-to-r from-purple-700 to-purple-400 bg-clip-text text-transparent">
+            {heading.line2}
+          </h1>
+        </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
-                {stats.map((stat, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <p className="text-[25.5px] leading-9">{stat.value}</p>
-                      {stat.icon}
-                    </div>
-                    <p className="text-[13.6px] leading-6 text-gray-600">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
+        {/* Description */}
+        <div className="text-[17px] leading-7 text-gray-700">
+          {description.map((line, i) => (
+            <p key={i}>{line}</p>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <Button className="h-[62px] gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 px-8 text-white shadow-lg hover:opacity-90">
+            <Search className="size-5" />
+            {buttons?.primary?.text}
+          </Button>
+
+          <Button
+            variant="outline"
+            className="h-[62px] gap-3 rounded-xl border-purple-600 text-purple-600 hover:bg-purple-50"
+          >
+            <Calendar className="size-5" />
+            {buttons?.secondary?.text}
+          </Button>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-6 pt-6">
+          {stats.map((stat, index) => (
+            <div key={index}>
+              <div className="flex items-center gap-2 text-purple-700">
+                <p className="text-2xl font-bold">{stat.value}</p>
+                {stat.icon}
               </div>
+              <p className="text-sm text-gray-600">{stat.label}</p>
             </div>
+          ))}
+        </div>
+      </div>
 
-            {/* Right Column - Form Card */}
-            <div className="flex items-center justify-center lg:justify-end">
-              <div className="w-full max-w-[559.929px] rounded-2xl bg-white p-8 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
-                {/* Card Header */}
-                <div className="mb-6 flex items-center justify-between">
-                  <h2 className="text-[20.4px] leading-6">{formCard.title}</h2>
-                  <LargeSparkleIcon />
-                </div>
-
-                {/* Form */}
-                <form className="space-y-6">
-                  {/* Symptoms Input */}
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="symptoms"
-                      className="text-[11.9px] text-gray-700"
-                    >
-                      {formCard.symptomLabel}
-                    </Label>
-                    <Input
-                      id="symptoms"
-                      name="symptoms"
-                      placeholder={formCard.symptomPlaceholder}
-                      className="h-[49.787px] rounded-xl border-gray-300"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <Button
-                    type="submit"
-                    className="h-[59.986px] w-full rounded-xl bg-blue-600 text-[15.3px] hover:bg-blue-700"
-                  >
-                    {formCard.submitText}
-                  </Button>
-                </form>
-
-                {/* Footer */}
-                <div className="mt-6 border-t border-gray-200 pt-4">
-                  <p className="text-center text-[11.9px] leading-5 text-gray-600">
-                    {formCard.footerText}
-                  </p>
-                </div>
-              </div>
-            </div>
+      {/* Right Card */}
+      <div className="flex justify-center lg:justify-end">
+        <div className="w-full max-w-[560px] rounded-2xl border border-purple-100 bg-white/80 backdrop-blur-xl p-8 shadow-2xl">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-purple-700">
+              {formCard.title}
+            </h2>
+            <LargeSparkleIcon />
           </div>
+
+          <form className="space-y-6">
+            <div>
+              <Label className="text-xs text-gray-700">
+                {formCard.symptomLabel}
+              </Label>
+              <Input
+                placeholder={formCard.symptomPlaceholder}
+                className="mt-2 h-[50px] rounded-xl border-purple-200 focus:ring-purple-500"
+              />
+            </div>
+
+            <Button className="h-[60px] w-full rounded-xl bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-md hover:opacity-90">
+              {formCard.submitText}
+            </Button>
+          </form>
+
+          <p className="mt-6 text-center text-xs text-gray-600">
+            {formCard.footerText}
+          </p>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
   );
 }

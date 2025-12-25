@@ -17,8 +17,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PH-Health-Care",
+  title: "Doctor Points",
   description: "A healthcare application built with Next.js",
+    icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
